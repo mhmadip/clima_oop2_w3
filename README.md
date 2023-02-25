@@ -4,7 +4,7 @@ Flutter Weather project.
 
 ## Getting Started 26 Feb 2023
 
-A few tasks that we'll do today, after we use api key to get the Data:
+A few tasks that we'll do today, after we use api key to get the Data from openweatehrmap.org:
 
 1- Get Weather Data for our specified location using Long and Lat values after click on the Button in the Loading Screen.
 2- Get Weather Data and position info (Lat & Long) automatically without using the Button on the Loading Screen by using initState.
