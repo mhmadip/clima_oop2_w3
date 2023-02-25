@@ -2,7 +2,7 @@
 
 Flutter Weather project.
 
-## Getting Started 26 Feb 2023
+## OOP2 Tasks of 26 Feb 2023
 
 A few tasks that we'll do today, after we use api key to get the Data from openweatehrmap.org:
 
