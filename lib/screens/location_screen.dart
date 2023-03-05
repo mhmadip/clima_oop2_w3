@@ -1,14 +1,43 @@
+import 'package:clima_oop2_w2/services/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:clima_oop2_w2/utilities/constants.dart';
 
 class LocationScreen extends StatefulWidget {
-  const LocationScreen({Key? key}) : super(key: key);
+  final weatherData;
+  const LocationScreen({Key? key,this.weatherData}) : super(key: key);
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }
 
 class _LocationScreenState extends State<LocationScreen> {
+  late String cityName;
+  late int tempr;
+  late int condition;
+  late String icon;
+  late String message;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    updateUI(widget.weatherData);
+  }
+
+  void updateUI(dynamic weatherData){
+    WeatherModel weatherModel =WeatherModel();
+    double temp= weatherData['main']['temp']- 273.15 ;
+    tempr= temp.toInt();
+    condition=weatherData['weather'][0]['id'];
+    cityName= weatherData['name'];
+    message= weatherModel.getMessage(tempr);
+    icon=weatherModel.getWeatherIcon(condition);
+    print(cityName);
+    print(tempr);
+    print(condition);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,22 +78,22 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: Row(
-                  children: const <Widget>[
+                  children:  <Widget>[
                     Text(
-                      '32°',
+                      '$tempr°',
                       style: kTempTextStyle,
                     ),
                     Text(
-                      '☀️',
+                      '$icon️',
                       style: kConditionTextStyle,
                     ),
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 15.0),
+               Padding(
+                padding: const EdgeInsets.only(right: 15.0),
                 child: Text(
-                  "It's 🍦 time in San Francisco!",
+                  "$message $cityName!",
                   textAlign: TextAlign.right,
                   style: kMessageTextStyle,
                 ),
